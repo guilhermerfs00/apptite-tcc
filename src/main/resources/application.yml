@@ -3,10 +3,6 @@ spring:
     url: ${JDBC_DATABASE_URL}
     username: ${JDBC_DATABASE_USERNAME}
     password: ${JDBC_DATABASE_PASSWORD}
-<<<<<<< HEAD
-    driver-class-name: org.postgresql.Driver
-=======
->>>>>>> e1dee6b (Primeiro projeto)
   jpa:
     hibernate:
       ddl-auto: update
@@ -27,7 +23,7 @@ springdoc:
     path: /swagger-ui.html
 
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 security:
   jwt:
