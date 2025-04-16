@@ -16,12 +16,13 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedOrigins(
                                 "http://localhost:4200",
-                                "https://apptite-back-6b87ad4804d1.herokuapp.com"
+                                "https://apptite-front-c86d00a35e08.herokuapp.com"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
             }
+
         };
     }
 }
