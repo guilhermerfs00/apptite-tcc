@@ -3,7 +3,10 @@ spring:
     url: ${JDBC_DATABASE_URL}
     username: ${JDBC_DATABASE_USERNAME}
     password: ${JDBC_DATABASE_PASSWORD}
+<<<<<<< HEAD
     driver-class-name: org.postgresql.Driver
+=======
+>>>>>>> e1dee6b (Primeiro projeto)
   jpa:
     hibernate:
       ddl-auto: update
