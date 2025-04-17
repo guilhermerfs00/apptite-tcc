@@ -36,6 +36,6 @@ public class StatusService {
 
     private void enviarNotificacao(String mensagem, PedidoDTO pedido) {
         String celularCliente = pedido.getCliente().getCelular();
-        twilioService.enviarMensagemWhatsApp(celularCliente, mensagem);
+//        twilioService.enviarMensagemWhatsApp(celularCliente, mensagem);
     }
 }
