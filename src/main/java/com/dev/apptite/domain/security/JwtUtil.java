@@ -28,6 +28,7 @@ public class JwtUtil {
                 .subject(username)
                 .claim("id", profile.getId())
                 .claim("nome", profile.getNome())
+                .claim("idRestaurante", profile.getIdRestaurante())
                 .claim("email", profile.getEmail())
                 .claim("role", profile.getRole().name())
                 .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))

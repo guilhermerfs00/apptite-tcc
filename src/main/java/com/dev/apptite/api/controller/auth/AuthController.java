@@ -1,7 +1,6 @@
 package com.dev.apptite.api.controller.auth;
 
 import com.dev.apptite.api.controller.auth.request.LoginRequest;
-import com.dev.apptite.api.controller.usuario.response.PerfilResponse;
 import com.dev.apptite.domain.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -12,6 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController implements IAuthController {
 
     private final AuthService authService;
+
+    @Override
+    public String loginCliente(Long idCliente) {
+        return authService.generateClientToken(idCliente);
+    }
 
     @Override
     public String login(LoginRequest request) {

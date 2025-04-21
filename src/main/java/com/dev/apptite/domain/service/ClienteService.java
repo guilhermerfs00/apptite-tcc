@@ -2,7 +2,6 @@ package com.dev.apptite.domain.service;
 
 import com.dev.apptite.domain.dto.ClienteDTO;
 import com.dev.apptite.domain.dto.MesaDTO;
-import com.dev.apptite.domain.dto.RestauranteDTO;
 import com.dev.apptite.domain.entity.Cliente;
 import com.dev.apptite.domain.exceptions.NotFoundException;
 import com.dev.apptite.domain.mapper.ClienteMapper;

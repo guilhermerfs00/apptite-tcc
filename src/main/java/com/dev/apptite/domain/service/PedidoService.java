@@ -46,6 +46,11 @@ public class PedidoService {
         return mapPageToDTO(pageResponse);
     }
 
+    public PageResponse<PedidoDTO> findByIdCliente(Long idCliente, PageRequest pageRequest) {
+        Page<Pedido> pageResponse = repository.findByIdCliente(idCliente, pageRequest);
+        return mapPageToDTO(pageResponse);
+    }
+
     public PageResponse<PedidoDTO> findByIdRestauranteAndStatus(Long idRestaurante, StatusPedidoEnum status, PageRequest pageRequest) {
         Page<Pedido> pageResponse = repository.findByIdRestauranteAndStatus(idRestaurante, status, pageRequest);
         return mapPageToDTO(pageResponse);

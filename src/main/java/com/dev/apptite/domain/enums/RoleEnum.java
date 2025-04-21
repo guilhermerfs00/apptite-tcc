@@ -9,7 +9,8 @@ public enum RoleEnum {
 
     ADMIN("ADMIN"),
     CHEF("CHEF"),
-    GARCON("GARCON");
+    GARCON("GARCON"),
+    CLIENTE("CLIENTE");
 
     private final String value;
 }

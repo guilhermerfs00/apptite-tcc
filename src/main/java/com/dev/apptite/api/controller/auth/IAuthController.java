@@ -22,6 +22,27 @@ import static org.springframework.http.HttpStatus.*;
 public interface IAuthController {
 
     @Operation(
+            summary = "Login do cliente",
+            description = "Endpoint responsável por autenticar um cliente com base no ID fornecido",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Autenticação bem-sucedida.",
+                            content = @Content(schema = @Schema(implementation = String.class))),
+                    @ApiResponse(
+                            responseCode = "401",
+                            description = "Credenciais inválidas.",
+                            content = @Content(schema = @Schema(implementation = ErrorDTO.class))),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "Ocorreu um erro inesperado.",
+                            content = @Content(schema = @Schema(implementation = ErrorDTO.class)))
+            })
+    @PostMapping("/login/cliente/{idCliente}")
+    @ResponseStatus(OK)
+    String loginCliente(@PathVariable Long idCliente);
+
+    @Operation(
             summary = "Login",
             description = "Endpoint responsável por autenticar um usuário",
             responses = {

@@ -98,6 +98,30 @@ public interface IPedidoController {
             @RequestParam(defaultValue = "10") @Min(1) int pageSize);
 
     @Operation(
+            summary = "Buscar pedido por id do Restaurante",
+            description = "Endpoint responsável por buscar pedidos de um Restaurante com paginação",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Pedido encontrada com sucesso.",
+                            content = @Content(schema = @Schema(implementation = PedidoResponse.class))),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Pedido não encontrada.",
+                            content = @Content(schema = @Schema(implementation = ErrorDTO.class))),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "Ocorreu um erro inesperado.",
+                            content = @Content(schema = @Schema(implementation = ErrorDTO.class)))
+            })
+    @GetMapping("cliente/{idCliente}")
+    @ResponseStatus(OK)
+    ResponseEntity<PageResponse<PedidoResponse>> findByIdCliente(
+            @PathVariable Long idCliente,
+            @RequestParam(defaultValue = "0") @Min(0) int pageNumber,
+            @RequestParam(defaultValue = "10") @Min(1) int pageSize);
+
+    @Operation(
             summary = "Status do Pedido",
             description = "Endpoint responsável por atualizar o status do pedido",
             responses = {

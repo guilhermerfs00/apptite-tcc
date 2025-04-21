@@ -14,6 +14,7 @@ public class ClienteDTO {
 
     private Long idCliente;
     private String nome;
+    private String email;
     private String celular;
     private String cpf;
     private Long idMesa;

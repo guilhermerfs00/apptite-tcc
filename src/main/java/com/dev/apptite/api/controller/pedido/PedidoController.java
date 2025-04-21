@@ -50,6 +50,14 @@ public class PedidoController implements IPedidoController {
     }
 
     @Override
+    public ResponseEntity<PageResponse<PedidoResponse>> findByIdCliente(Long idCliente, int pageNumber, int pageSize) {
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
+        PageResponse<PedidoDTO> pedidoDTO = service.findByIdCliente(idCliente, pageRequest);
+        PageResponse<PedidoResponse> response = mapper.mapPageDtoToPageResponse(pedidoDTO);
+        return ResponseEntity.status(OK).body(response);
+    }
+
+    @Override
     public ResponseEntity<PedidoResponse> updateStatusPedido(StatusPedidoEnum statusPedidoEnum, Long id) {
         PedidoDTO response = service.processarPedido(statusPedidoEnum, id);
         return ResponseEntity.status(OK).body(mapper.dtoToResponse(response));
