@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -15,9 +15,10 @@ public class FeedbackDTO {
 
     private Long idFeedback;
     private Long idCliente;
-    private Long idUsuario;
-    private List<MensagemDTO> mensagem;
     private String conteudo;
+    private Long nota;
     private ClienteDTO cliente;
+    private LocalDateTime dataCriacao;
+    private LocalDateTime dataAtualizacao;
 
 }

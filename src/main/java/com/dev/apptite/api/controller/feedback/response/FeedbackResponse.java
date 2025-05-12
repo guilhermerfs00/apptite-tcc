@@ -1,6 +1,6 @@
 package com.dev.apptite.api.controller.feedback.response;
 
-import com.dev.apptite.api.controller.categoria.response.CategoriaResponse;
+import com.dev.apptite.domain.dto.ClienteDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +16,7 @@ public class FeedbackResponse {
 
     private Long idFeedback;
     private String conteudo;
+    private Long nota;
     private LocalDateTime dataCriacao;
     private LocalDateTime dataAtualizacao;
 

@@ -1,19 +1,29 @@
 package com.dev.apptite.api.controller.pagamento.request;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import com.dev.apptite.domain.entity.MetodoDePagamento;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
+@Data
 public class PagamentoRequest {
 
-    @Schema(description = "Mesa", example = "1")
     @NotNull
-    private Long idMesa;
+    private Long idPagamento;
 
+    @NotNull
+    @DecimalMin(value = "0.01")
+    private BigDecimal valorPago;
+
+    @NotNull
+    @DecimalMin(value = "0.01")
     private BigDecimal valorTotal;
 
-    @Schema(description = "Valor pago", example = "2,00")
     @NotNull
-    private BigDecimal valorPago;
+    private Long idCliente;
+
+    @NotNull
+    private MetodoDePagamento metodoDePagamento;
 }

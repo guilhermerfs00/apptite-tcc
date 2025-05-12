@@ -50,10 +50,6 @@ public class Usuario {
     @JoinColumn(name = "id_restaurante")
     private Restaurante restaurante;
 
-    @ToString.Exclude
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Feedback> feedback;
-
     @CreatedDate
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;

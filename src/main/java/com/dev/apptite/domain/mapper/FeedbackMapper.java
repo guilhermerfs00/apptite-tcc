@@ -6,12 +6,14 @@ import com.dev.apptite.domain.dto.FeedbackDTO;
 import com.dev.apptite.domain.entity.Feedback;
 import com.dev.apptite.domain.utils.PageResponse;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface FeedbackMapper {
 
+    @Mapping(target = "cliente", ignore = true)
     FeedbackDTO entityToDTO(Feedback entity);
 
     Feedback dtoToEntity(FeedbackDTO dto);
@@ -20,6 +22,7 @@ public interface FeedbackMapper {
 
     FeedbackDTO requestToDto(FeedbackRequest request);
 
+    @Mapping(target = "cliente", ignore = true)
     List<FeedbackDTO> entityToDTO(List<Feedback> entity);
 
     List<FeedbackResponse> dtoToResponse(List<FeedbackDTO> dto);

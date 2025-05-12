@@ -1,8 +1,12 @@
 spring:
   datasource:
-    url: ${JDBC_DATABASE_URL}
-    username: ${JDBC_DATABASE_USERNAME}
-    password: ${JDBC_DATABASE_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/apptite_db
+    username: user
+    password: password
+  security:
+    user:
+      name: admin
+      password: admin
   jpa:
     hibernate:
       ddl-auto: update
@@ -15,6 +19,9 @@ logging:
     org:
       springframework:
         web: DEBUG
+
+stripe:
+  token: "rk_test_51RNeLsCAbO7fQUZ4rQAfDgCQqFvg9WI2xjcDenPAeA55FnW0XPBw3wkLHaXdaS843m3geoSA1ITpyEx7lFD6Alt600xqn7AOYw"
 
 springdoc:
   api-docs:

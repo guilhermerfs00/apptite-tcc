@@ -35,22 +35,8 @@ public class FeedbackService {
     @Transactional
     public FeedbackDTO criarFeedback(FeedbackDTO feedbackDTO) {
         associarCliente(feedbackDTO);
-        Feedback feedback = mapper.dtoToEntity(feedbackDTO);
-        Mensagem mensagem = criarMensagem(feedbackDTO.getConteudo(), TipoMensagemEnum.PERGUNTA, feedback);
-        feedback.setMensagens(Collections.singletonList(mensagem));
-        feedback = repository.save(feedback);
+        Feedback feedback = repository.save(mapper.dtoToEntity(feedbackDTO));
         return mapper.entityToDTO(feedback);
-    }
-
-    @Transactional
-    public FeedbackDTO responderFeedback(Long id, String resposta) {
-        FeedbackDTO feedbackDTO = buscarPorId(id);
-        Feedback feedback = mapper.dtoToEntity(feedbackDTO);
-        Mensagem mensagem = criarMensagem(resposta, TipoMensagemEnum.RESPOSTA, feedback);
-        List<Mensagem> mensagens = new ArrayList<>(Optional.ofNullable(feedback.getMensagens()).orElseGet(ArrayList::new));
-        mensagens.add(mensagem);
-        feedback.setMensagens(mensagens);
-        return mapper.entityToDTO(repository.save(feedback));
     }
 
     public FeedbackDTO buscarPorId(Long id) {
@@ -76,11 +62,7 @@ public class FeedbackService {
         feedbackDTO.setCliente(cliente);
     }
 
-    private Mensagem criarMensagem(String conteudo, TipoMensagemEnum tipo, Feedback feedback) {
-        return Mensagem.builder()
-                .tipoMensagem(tipo)
-                .conteudo(conteudo)
-                .feedback(feedback)
-                .build();
+    public List<FeedbackDTO> buscarPorRestaurante(Long idRestaurante) {
+        return mapper.entityToDTO(repository.findByIdRestaurante(idRestaurante));
     }
 }

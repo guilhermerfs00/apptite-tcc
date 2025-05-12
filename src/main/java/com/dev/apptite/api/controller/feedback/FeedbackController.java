@@ -1,10 +1,8 @@
 package com.dev.apptite.api.controller.feedback;
 
 import com.dev.apptite.api.controller.feedback.request.FeedbackRequest;
-import com.dev.apptite.api.controller.feedback.request.FeedbackUpdateRequest;
 import com.dev.apptite.api.controller.feedback.response.FeedbackResponse;
 import com.dev.apptite.domain.dto.FeedbackDTO;
-import com.dev.apptite.domain.dto.MensagemDTO;
 import com.dev.apptite.domain.mapper.FeedbackMapper;
 import com.dev.apptite.domain.service.FeedbackService;
 import com.dev.apptite.domain.utils.PageResponse;
@@ -12,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -38,6 +38,13 @@ public class FeedbackController implements IFeedbackController {
     }
 
     @Override
+    public ResponseEntity<List<FeedbackResponse>> findByRestaurante(Long idRestaurante) {
+        List<FeedbackDTO> feedbackDTO = service.buscarPorRestaurante(idRestaurante);
+        List<FeedbackResponse> response = mapper.dtoToResponse(feedbackDTO);
+        return ResponseEntity.status(OK).body(response);
+    }
+
+    @Override
     public ResponseEntity<Void> delete(Long id) {
         service.deletarPorId(id);
         return ResponseEntity.status(NO_CONTENT).build();
@@ -49,12 +56,6 @@ public class FeedbackController implements IFeedbackController {
         PageResponse<FeedbackResponse> response = mapper.mapPageDtoToPageResponse(paginated);
 
         return ResponseEntity.status(OK).body(response);
-    }
-
-    public ResponseEntity<FeedbackResponse> responderFeedback(Long id, FeedbackUpdateRequest request) {
-        FeedbackDTO feedbackDTO = service.responderFeedback(id, request.getResposta());
-        FeedbackResponse response = mapper.dtoToResponse(feedbackDTO);
-        return ResponseEntity.status(CREATED).body(response);
     }
 }
 

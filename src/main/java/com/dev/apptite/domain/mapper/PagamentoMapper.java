@@ -6,12 +6,14 @@ import com.dev.apptite.domain.dto.PagamentoDTO;
 import com.dev.apptite.domain.entity.Pagamento;
 import com.dev.apptite.domain.utils.PageResponse;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface PagamentoMapper {
 
+    @Mapping(target = "cliente.pedidos", ignore = true)
     PagamentoDTO entityToDTO(Pagamento entity);
 
     Pagamento dtoToEntity(PagamentoDTO dto);
@@ -20,6 +22,7 @@ public interface PagamentoMapper {
 
     PagamentoDTO requestToDto(PagamentoRequest request);
 
+    @Mapping(target = "cliente.pedidos", ignore = true)
     List<PagamentoDTO> entityToDTO(List<Pagamento> entity);
 
     List<PagamentoResponse> dtoToResponse(List<PagamentoDTO> dto);

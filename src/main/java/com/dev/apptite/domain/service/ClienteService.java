@@ -34,6 +34,11 @@ public class ClienteService {
         return mapper.entityToDTO(cliente);
     }
 
+    public Cliente buscarPorIdEntity(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("client.not-found.error", id));
+    }
+
     public void deletarPorId(Long id) {
         buscarPorId(id);
         repository.deleteById(id);

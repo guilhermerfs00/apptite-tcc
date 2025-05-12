@@ -1,13 +1,15 @@
 package com.dev.apptite.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Data
@@ -21,18 +23,13 @@ public class Feedback {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFeedback;
 
+    private String conteudo;
+
+    private Long nota;
+
     @ManyToOne
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
-
-    @ToString.Exclude
-    @OneToMany(mappedBy = "feedback", cascade = CascadeType.ALL)
-    private List<Mensagem> mensagens;
-
-    @ToString.Exclude
-    @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;
 
     @CreatedDate
     @Column(name = "data_criacao")

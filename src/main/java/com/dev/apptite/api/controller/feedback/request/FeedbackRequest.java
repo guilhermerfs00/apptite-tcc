@@ -1,7 +1,6 @@
 package com.dev.apptite.api.controller.feedback.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Data
@@ -15,5 +14,8 @@ public class FeedbackRequest {
 
     @Schema(description = "Mensagem de feedback", example = "Hambúrguer estava ótimo")
     private String conteudo;
+
+    @Schema(description = "Nota feedback", example = "5")
+    private Long nota;
 
 }

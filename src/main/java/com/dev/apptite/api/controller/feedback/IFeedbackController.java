@@ -17,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
@@ -68,6 +70,27 @@ public interface IFeedbackController {
     ResponseEntity<FeedbackResponse> findById(@PathVariable Long id);
 
     @Operation(
+            summary = "Buscar feedback por id",
+            description = "Endpoint responsável por buscar um feedback",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Feedback encontrado com sucesso.",
+                            content = @Content(schema = @Schema(implementation = FeedbackResponse.class))),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Feedback não encontrado.",
+                            content = @Content(schema = @Schema(implementation = ErrorDTO.class))),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "Ocorreu um erro inesperado.",
+                            content = @Content(schema = @Schema(implementation = ErrorDTO.class)))
+            })
+    @GetMapping("/restaurantes/{id}")
+    @ResponseStatus(OK)
+    ResponseEntity<List<FeedbackResponse>> findByRestaurante(@PathVariable("id") Long id);
+
+    @Operation(
             summary = "Deletar Feedback",
             description = "Endpoint responsável por deletar um feedback",
             responses = {
@@ -110,24 +133,4 @@ public interface IFeedbackController {
             @ParameterObject @RequestParam(defaultValue = "0") @Min(0) int page,
             @ParameterObject @RequestParam(defaultValue = "10") @Min(1) int size);
 
-    @Operation(
-            summary = "Responder feedback",
-            description = "Endpoint responsável por responde um feedback",
-            responses = {
-                    @ApiResponse(
-                            responseCode = "201",
-                            description = "Resposta enviada com sucesso.",
-                            content = @Content(schema = @Schema(implementation = FeedbackResponse.class))),
-                    @ApiResponse(
-                            responseCode = "422",
-                            description = "Requisição possui pelo menos um valor faltante ou inválido.",
-                            content = @Content(schema = @Schema(implementation = ErrorDTO.class))),
-                    @ApiResponse(
-                            responseCode = "500",
-                            description = "Ocorreu um erro inesperado.",
-                            content = @Content(schema = @Schema(implementation = ErrorDTO.class)))
-            })
-    @PostMapping("{id}")
-    @ResponseStatus(CREATED)
-    ResponseEntity<FeedbackResponse> responderFeedback(@Valid @PathVariable Long id, @RequestBody FeedbackUpdateRequest request);
 }
