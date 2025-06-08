@@ -1,12 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/apptite_db
-    username: user
-    password: password
-  security:
-    user:
-      name: admin
-      password: admin
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update

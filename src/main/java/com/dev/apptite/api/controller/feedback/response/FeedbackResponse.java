@@ -1,6 +1,5 @@
 package com.dev.apptite.api.controller.feedback.response;
 
-import com.dev.apptite.domain.dto.ClienteDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
