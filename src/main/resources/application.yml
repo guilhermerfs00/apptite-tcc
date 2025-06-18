@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${JDBC_DATABASE_URL}
-    username: ${JDBC_DATABASE_USERNAME}
-    password: ${JDBC_DATABASE_PASSWORD}
+    url: jdbc:postgresql://maglev.proxy.rlwy.net:29316/railway
+    username: postgres
+    password: ZneKYCwWyaXAPPLTAMgHGoBpurWgFjRX
   jpa:
     hibernate:
       ddl-auto: update
